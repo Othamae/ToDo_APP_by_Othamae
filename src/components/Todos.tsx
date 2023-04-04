@@ -17,6 +17,7 @@ export const Todos: React.FC<Props> = ({ todos, onRemoveTodo, onToggleCompleteTo
                     id= {todo.id}
                     title= {todo.title}
                     completed= {todo.completed}
+                    user_id={todo.user_id}
                     onToggleCompleteTodo = {onToggleCompleteTodo}
                     onRemoveTodo={onRemoveTodo}
                     />
