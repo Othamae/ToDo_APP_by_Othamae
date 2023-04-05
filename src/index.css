@@ -1,3 +1,30 @@
 html {
 	filter: invert(1);
 }
+
+.user {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-end;
+	align-items: center;
+    gap: 10px;
+	width: -webkit-fill-available;
+}
+
+.user a{
+	color: inherit;
+margin: 3px;
+padding: 3px 7px;
+text-decoration: none;
+border: 1px solid transparent;
+border-radius: 3px;
+}
+
+.user a:hover {
+	border-color: #DB7676;
+}
+
+.user button.selected {
+	border-color: #CE4646;
+}
+
