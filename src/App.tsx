@@ -6,7 +6,7 @@ import { TODO_FILTERS } from './const'
 import { type TodoId, type Todo as TodoType, type FilterValue, type TodoTitle } from './types'
 import { Login } from './components/Login'
 import { Register } from './components/Register'
-import { getAllTask, createTask, deleteTask, completeTask } from './services/Tasks/TaskServices'
+import { getAllTask, createTask, deleteTask, completeTask, editTask } from './services/Tasks/TaskServices'
 
 // const mockTodos = [
 //   {
@@ -29,6 +29,7 @@ import { getAllTask, createTask, deleteTask, completeTask } from './services/Tas
 const App = (): JSX.Element => {
   const [todos, setTodos] = useState<TodoType[]>([])
   const [filterSelected, setFilterSelected] = useState<FilterValue>(TODO_FILTERS.ALL)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     getAllTask().then(listOfTodos => {
@@ -37,12 +38,10 @@ const App = (): JSX.Element => {
       .catch(error => {
         console.error(error)
       })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [])
-
-  // const handleRemove = ({ id }: TodoId): void => {
-  //   const newTodos = todos.filter(todo => todo.id !== id)
-  //   setTodos(newTodos)
-  // }
 
   const handleRemove = ({ id }: TodoId): void => {
     deleteTask({ id })
@@ -87,8 +86,6 @@ const App = (): JSX.Element => {
       .catch(error => {
         console.error(error)
       })
-    // const newTodos = todos.filter(todo => !todo.completed)
-    // setTodos(newTodos)
   }
 
   const activeCount = todos.filter(todo => !todo.completed).length
@@ -110,6 +107,21 @@ const App = (): JSX.Element => {
         console.error(error)
       })
   }
+  const handleEditTodo = ({ id }: TodoId, { title }: TodoTitle): void => {
+    editTask({ id, title })
+      .then(() => {
+        const newTodos = todos.map(todo => {
+          return (todo.id === id
+            ? { ...todo, title }
+            : todo
+          )
+        })
+        setTodos(newTodos)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
 
   const handleLogin = (): void => {
 
@@ -126,11 +138,19 @@ const App = (): JSX.Element => {
       </div>
     <div className='todoapp'>
       <Header newToDo={handleAddToDo}/>
-      <Todos
+      {loading
+        ? (
+        <div>Loading...</div>
+          )
+        : (
+        <Todos
       onRemoveTodo={handleRemove}
       todos={filteredToDos}
       onToggleCompleteTodo = {handleCompleted}
+      onEditTodo={handleEditTodo}
       />
+          )
+      }
       <Footer
       activeCount={activeCount}
       completedCount= {completedCount}

@@ -48,3 +48,13 @@ export const completeTask = async (
     throw error
   }
 }
+
+export const editTask = async (
+  { id, title }: Pick<TodoType, 'id' | 'title'>): Promise<void> => {
+  try {
+    await axios.put(`${URL}/${id.toString()}`, { title })
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
