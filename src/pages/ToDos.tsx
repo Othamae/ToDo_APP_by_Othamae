@@ -3,25 +3,35 @@ import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { Todos } from '../components/Todos'
 import { TODO_FILTERS } from '../const'
-import { type TodoId, type Todo as TodoType, type FilterValue, type TodoTitle } from '../types'
+import { type TodoId, type Todo as TodoType, type FilterValue, type TodoTitle, type UserId as UserIdType } from '../types'
 
-import { getAllTask, createTask, deleteTask, completeTask, editTask } from '../services/Tasks/TaskServices'
+import { UserListOfTask, createTask, deleteTask, completeTask, editTask } from '../services/Tasks/TaskServices'
 
-export const ToDos = (): JSX.Element => {
+interface Props {
+  userId: UserIdType
+}
+
+export const ToDos: React.FC<Props> = ({ userId }): JSX.Element => {
   const [todos, setTodos] = useState<TodoType[]>([])
   const [filterSelected, setFilterSelected] = useState<FilterValue>(TODO_FILTERS.ALL)
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    getAllTask().then(listOfTodos => {
-      setTodos(listOfTodos)
-    })
-      .catch(error => {
-        console.error(error)
+    const { id } = userId
+    console.log({ id })
+    console.log(id === 0)
+    id === 0
+      ? setTodos([])
+      : UserListOfTask({ id }).then(listOfTodos => {
+        setTodos(listOfTodos)
       })
-      .finally(() => {
-        setLoading(false)
-      })
+        .catch(error => {
+          console.error(error)
+        })
+        .finally(() => {
+          setLoading(false)
+        })
+    setLoading(false)
   }, [])
 
   const handleRemove = ({ id }: TodoId): void => {
@@ -79,7 +89,10 @@ export const ToDos = (): JSX.Element => {
   })
 
   const handleAddToDo = ({ title }: TodoTitle): void => {
-    createTask({ title })
+    console.log({ userId })
+    const { id } = userId
+    console.log({ id })
+    createTask({ title }, { id })
       .then(res => {
         const newToDos = todos.concat(res)
         setTodos(newToDos)
@@ -106,7 +119,7 @@ export const ToDos = (): JSX.Element => {
   return (
         <>
         <div className='todoapp'>
-        <Header newToDo={handleAddToDo}/>
+        <Header newToDo={handleAddToDo} userId={userId}/>
         {loading
           ? (
           <div>Loading...</div>
