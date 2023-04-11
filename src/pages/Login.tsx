@@ -1,17 +1,46 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { LoginUser } from '../services/Users/UserServices'
+import { type UserId, type Notification as NotificationType } from '../types'
+import Notification from '../components/Notification'
 
-export const Login: React.FC = () => {
+interface Props {
+  setUserId: React.Dispatch<React.SetStateAction<UserId>>
+}
+
+export const Login: React.FC<Props> = ({ setUserId }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState<NotificationType | null>('')
+  const navigate = useNavigate()
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
-    // Aquí puedes manejar la lógica del inicio de sesión
+    LoginUser({ email }, { password })
+      .then(user => {
+        console.log(user)
+        const { id } = user
+        setUserId({ id })
+        setEmail('')
+        setPassword('')
+        navigate('/', { state: { userId: id } })
+      })
+      .catch(error => {
+        console.error(error)
+        setEmail('')
+        setPassword('')
+        setErrorMessage('WRONG CREDENTIALS')
+        setTimeout(() => {
+          setErrorMessage('')
+        }, 5000)
+      })
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}className='todoapp' >
+      <div className='login'>
       <div>
-        <label htmlFor="email">Email:</label>
+        <label className='email' htmlFor="email">Email:</label>
         <input
           type="email"
           id="email"
@@ -27,8 +56,16 @@ export const Login: React.FC = () => {
           value={password}
           onChange={(e) => { setPassword(e.target.value) }}
         />
+        {
+          errorMessage !== ''
+            ? <Notification message={errorMessage}/>
+            : null
+        }
+
       </div>
       <button type="submit">Login</button>
+      </div>
+
     </form>
   )
 }
