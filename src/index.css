@@ -28,3 +28,56 @@ border-radius: 3px;
 	border-color: #CE4646;
 }
 
+.login{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 20px;
+	align-items: center;
+	justify-content: space-evenly;
+	gap: 20px;
+	font-size: 20px;
+}
+
+
+
+
+.login label {
+    padding: 10px;
+} 
+.login input{
+height: 22px;
+width: 300px;
+}
+
+label.email {
+    margin-right: 38px;
+}
+
+.login button{
+	color: inherit;
+margin: 3px;
+padding: 3px 7px;
+text-decoration: none;
+border: 1px solid transparent;
+border-radius: 3px;
+}
+
+.login button:hover {
+	border-color: #DB7676;
+	cursor: pointer;
+}
+.login button.selected {
+	border-color: #CE4646;
+}
+
+
+.error { 	
+	color: #00FFFF;
+	background: lightgrey;
+	font-size: 20px;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 10px;
+	margin-top: 20px;
+}  
