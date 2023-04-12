@@ -18,8 +18,6 @@ export const ToDos: React.FC<Props> = ({ userId }): JSX.Element => {
 
   useEffect(() => {
     const { id } = userId
-    console.log({ id })
-    console.log(id === 0)
     id === 0
       ? setTodos([])
       : UserListOfTask({ id }).then(listOfTodos => {
@@ -32,7 +30,7 @@ export const ToDos: React.FC<Props> = ({ userId }): JSX.Element => {
           setLoading(false)
         })
     setLoading(false)
-  }, [])
+  }, [userId])
 
   const handleRemove = ({ id }: TodoId): void => {
     deleteTask({ id })
