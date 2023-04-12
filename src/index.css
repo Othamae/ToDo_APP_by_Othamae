@@ -50,9 +50,10 @@ height: 22px;
 width: 300px;
 }
 
-label.email {
+label.email ,label.name{
     margin-right: 38px;
 }
+
 
 .login button{
 	color: inherit;
