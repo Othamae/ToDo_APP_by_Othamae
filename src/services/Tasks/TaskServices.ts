@@ -1,8 +1,6 @@
 import axios from 'axios'
 import { type Todo as TodoType, type TodoTitle, type TodoId, type UserId as UserIdType } from '../../types'
-
-const URL = 'http://localhost:5001/api/task'
-const URL_USER = 'http://localhost:5001/api/user'
+import { URL, URL_USER } from '../../const'
 
 export const getAllTask = async (): Promise<TodoType[]> => {
   try {

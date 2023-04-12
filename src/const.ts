@@ -18,3 +18,8 @@ export const FILTERS_BUTTONS = {
     href: `/?filters=${TODO_FILTERS.COMPLETED}`
   }
 } as const
+
+const API_URL = 'https://todo-apibackend-production.up.railway.app'
+
+const URL = `${API_URL}/task`
+export const URL_USER = `${API_URL}/api/user`
