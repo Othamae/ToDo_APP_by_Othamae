@@ -11,7 +11,7 @@ html {
 	width: -webkit-fill-available;
 }
 
-.user a{
+.user a, .logout{
 	color: inherit;
 margin: 3px;
 padding: 3px 7px;
@@ -20,12 +20,21 @@ border: 1px solid transparent;
 border-radius: 3px;
 }
 
-.user a:hover {
+
+.user a:hover{
 	border-color: #DB7676;
 }
 
+.logout:hover{
+	border-color: #DB7676;
+	cursor: pointer;
+}
 .user button.selected {
 	border-color: #CE4646;
+}
+
+.user h2{
+	
 }
 
 .login{
