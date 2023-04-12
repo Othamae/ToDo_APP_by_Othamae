@@ -27,9 +27,9 @@ const App = (): JSX.Element => {
       </div>
 
     <Routes>
-      <Route path='/' element={<ToDos userId = {userId}/>}/>
-    <Route path='/login' element={<Login setUserId={setUserId} setUserName = {setUserName}/>} />
-    <Route path='/register' element={<Register />} />
+      <Route path='/ToDo_APP_by_Othamae/' element={<ToDos userId = {userId}/>}/>
+    <Route path='/ToDo_APP_by_Othamae/login' element={<Login setUserId={setUserId} setUserName = {setUserName}/>} />
+    <Route path='/ToDo_APP_by_Othamae/register' element={<Register />} />
     </Routes>
     </>
   )

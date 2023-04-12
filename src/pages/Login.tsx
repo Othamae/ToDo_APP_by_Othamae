@@ -24,7 +24,7 @@ export const Login: React.FC<Props> = ({ setUserId, setUserName }) => {
         setUserId({ id })
         setEmail('')
         setPassword('')
-        navigate('/', { state: { userId: id } })
+        navigate('/ToDo_APP_by_Othamae', { state: { userId: id } })
       })
       .catch(error => {
         console.error(error)

@@ -21,7 +21,7 @@ export const Register: React.FC = () => {
         setEmail('')
         setPassword('')
         alert('USER SUCCESSFULLY CREATED!!')
-        navigate('/', { state: { userId: id } })
+        navigate('/ToDo_APP_by_Othamae', { state: { userId: id } })
       })
       .catch(error => {
         console.error(error)
