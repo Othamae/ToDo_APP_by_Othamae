@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { type Todo as TodoType, type TodoTitle, type TodoId, type UserId as UserIdType } from '../../types'
-import { URL, URL_USER } from '../../const'
+import { URL_TASK, URL_USER } from '../../const'
 
 export const getAllTask = async (): Promise<TodoType[]> => {
   try {
-    const response = await axios.get<TodoType[]>(URL)
+    const response = await axios.get<TodoType[]>(URL_TASK)
     return response.data
   } catch (error) {
     console.error(error)
@@ -22,7 +22,7 @@ export const createTask = async ({ title }: TodoTitle, { id }: UserIdType): Prom
   console.log({ newToDo })
 
   try {
-    const response = await axios.post<TodoType[]>(URL, newToDo)
+    const response = await axios.post<TodoType[]>(URL_TASK, newToDo)
     console.log({ response })
     return response.data
   } catch (error) {
@@ -33,7 +33,7 @@ export const createTask = async ({ title }: TodoTitle, { id }: UserIdType): Prom
 
 export const deleteTask = async ({ id }: TodoId): Promise<void> => {
   try {
-    await axios.delete(`${URL}/${id.toString()}`)
+    await axios.delete(`${URL_TASK}/${id.toString()}`)
   } catch (error) {
     console.error(error)
     throw error
@@ -43,7 +43,7 @@ export const deleteTask = async ({ id }: TodoId): Promise<void> => {
 export const completeTask = async (
   { id, completed }: Pick<TodoType, 'id' | 'completed'>): Promise<void> => {
   try {
-    await axios.put(`${URL}/${id.toString()}`, { completed })
+    await axios.put(`${URL_TASK}/${id.toString()}`, { completed })
   } catch (error) {
     console.error(error)
     throw error
@@ -53,7 +53,7 @@ export const completeTask = async (
 export const editTask = async (
   { id, title }: Pick<TodoType, 'id' | 'title'>): Promise<void> => {
   try {
-    await axios.put(`${URL}/${id.toString()}`, { title })
+    await axios.put(`${URL_TASK}/${id.toString()}`, { title })
   } catch (error) {
     console.error(error)
     throw error
