@@ -26,7 +26,7 @@ export const User: React.FC<Props> = ({ userId, userName, setUserId, setUserName
     setIsLogged(false)
     setUserName({ name: '' })
     setUserId({ id: 0 })
-    navigate('/', { state: { userId: 0 }, replace: true })
+    navigate('/ToDo_APP_by_Othamae', { state: { userId: 0 }, replace: true })
   }
 
   return (
@@ -38,9 +38,9 @@ export const User: React.FC<Props> = ({ userId, userName, setUserId, setUserName
       <button className='logout' onClick={handleLogout} >Logout</button>
       </>)
       : (<>
-          <Link to='/login' >Login</Link>
+          <Link to='/ToDo_APP_by_Othamae/login' >Login</Link>
           <h3>|</h3>
-          <Link to='/register' >Register</Link>
+          <Link to='/ToDo_APP_by_Othamae/register' >Register</Link>
           </>)
 }
  </div>

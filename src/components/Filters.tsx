@@ -9,9 +9,6 @@ interface Props {
 export const Filters: React.FC<Props> = (
   { filterSelected, onFilterChange }
 ) => {
-  // const handlerClick = (event) => {
-  //   onFilterChange(filter)
-  // }
   return (
     <ul className="filters">
       {

@@ -87,9 +87,7 @@ export const ToDos: React.FC<Props> = ({ userId }): JSX.Element => {
   })
 
   const handleAddToDo = ({ title }: TodoTitle): void => {
-    console.log({ userId })
     const { id } = userId
-    console.log({ id })
     createTask({ title }, { id })
       .then(res => {
         const newToDos = todos.concat(res)
