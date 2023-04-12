@@ -19,10 +19,12 @@ export interface User {
   id: number
   email: string
   password: string
+  name: string
 }
 
 export type UserEmail = Pick<User, 'email'>
 export type UserPassword = Pick<User, 'password'>
 export type UserId = Pick<User, 'id'>
+export type UserName = Pick<User, 'name'>
 
 export type Notification = string
