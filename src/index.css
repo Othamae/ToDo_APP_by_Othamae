@@ -20,6 +20,14 @@ border: 1px solid transparent;
 border-radius: 3px;
 }
 
+h5{
+	display: flex;
+	justify-content:center;
+	
+}
+.name{
+	color: #DB7676;
+}
 
 .user a:hover{
 	border-color: #DB7676;

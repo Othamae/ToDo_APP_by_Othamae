@@ -31,6 +31,7 @@ const App = (): JSX.Element => {
     <Route path='/ToDo_APP_by_Othamae/login' element={<Login setUserId={setUserId} setUserName = {setUserName}/>} />
     <Route path='/ToDo_APP_by_Othamae/register' element={<Register />} />
     </Routes>
+    <h5>by @othamae</h5>
     </>
   )
 }
