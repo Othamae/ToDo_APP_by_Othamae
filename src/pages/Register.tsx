@@ -16,11 +16,11 @@ export const Register: React.FC = () => {
 
     RegisterUser({ email }, { password }, { name })
       .then(user => {
-        console.log(user)
         const { id } = user
         setName('')
         setEmail('')
         setPassword('')
+        alert('USER SUCCESSFULLY CREATED!!')
         navigate('/', { state: { userId: id } })
       })
       .catch(error => {
