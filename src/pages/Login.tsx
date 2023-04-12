@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LoginUser } from '../services/Users/UserServices'
-import { type UserId, type Notification as NotificationType } from '../types'
+import { type UserId as UserIdType, type Notification as NotificationType, type UserName as UserNameType } from '../types'
 import Notification from '../components/Notification'
 
 interface Props {
-  setUserId: React.Dispatch<React.SetStateAction<UserId>>
+  setUserId: React.Dispatch<React.SetStateAction<UserIdType>>
+  setUserName: React.Dispatch<React.SetStateAction<UserNameType>>
 }
 
-export const Login: React.FC<Props> = ({ setUserId }) => {
+export const Login: React.FC<Props> = ({ setUserId, setUserName }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState<NotificationType | null>('')
@@ -18,8 +19,8 @@ export const Login: React.FC<Props> = ({ setUserId }) => {
     e.preventDefault()
     LoginUser({ email }, { password })
       .then(user => {
-        console.log(user)
-        const { id } = user
+        const { id, name } = user
+        setUserName({ name })
         setUserId({ id })
         setEmail('')
         setPassword('')
