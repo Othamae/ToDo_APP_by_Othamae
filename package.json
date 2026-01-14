@@ -16,7 +16,7 @@
     "mycommandcli": "^1.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.10.0",
+    "react-router-dom": "^6.30.3",
     "todomvc-app-css": "2.4.2"
   },
   "devDependencies": {
